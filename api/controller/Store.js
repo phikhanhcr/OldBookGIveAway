@@ -41,3 +41,17 @@ module.exports.myStore = async ( req , res ) => {
   const data = await Store.find({boss : req.params.id})
   res.json(data);
 }
+
+
+module.exports.removeEachBook = async (req, res ) => {
+  const storeId = req.params.store;
+  const idBook = req.params.idBook;
+  const storeCurrent = await Store.find({boss : storeId})
+  const AllBook = storeCurrent[0].myBook  
+  const itemForRemove = AllBook.filter(ele => {
+    return ele._id == idBook
+  })
+  const index = AllBook.indexOf(itemForRemove[0]) 
+  storeCurrent[0].myBook.splice(index , 1);
+  storeCurrent[0].save();
+}

@@ -10,4 +10,6 @@ router.put('/store/:id' , controller.postNew)
 
 router.get('/store/:id' , controller.myStore)
 
+router.delete('/store/:store/:idBook' , controller.removeEachBook)
+
 module.exports = router;
